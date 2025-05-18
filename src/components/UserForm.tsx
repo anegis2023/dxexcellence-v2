@@ -124,9 +124,9 @@ const UserForm: React.FC = () => {
         </p>
       </div>
       
-      <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
-        <h4 className="text-sm font-medium text-yellow-800 mb-2">About conference Steps to Digital Transformation Excellence</h4>
-        <p className="text-xs text-yellow-700">
+      <div className="p-4 rounded-lg border" style={{ background: '#dde2fc', borderColor: '#c5cef5' }}>
+        <h4 className="text-sm font-medium text-[#380e5b] mb-2">About conference Steps to Digital Transformation Excellence</h4>
+        <p className="text-xs text-[#380e5b]">
           By creating this graphic, you're confirming that you participate in conference Steps to Digital Transformation Excellence. Your personalized graphic will help you 
           announce your attendance to your professional network.
         </p>

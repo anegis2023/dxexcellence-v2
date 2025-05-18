@@ -26,8 +26,8 @@ const Footer: React.FC = () => {
             <img src={dxLogo} alt="DX EXCELLENTS" className="h-10" />
           </div>
           <div className="text-sm">
-            <p className="text-[#72edff]">Create your personalized graphics for the DX EXCELLENTS conference</p>
-            <p className="mt-1 text-[#72edff]">© {new Date().getFullYear()} DX EXCELLENTS Graphics Generator</p>
+            <p className="text-[#72edff]">Create your personalized graphics for the DX EXCELLENCE conference</p>
+            <p className="mt-1 text-[#72edff]">© {new Date().getFullYear()} DX EXCELLENCE Graphics Generator</p>
           </div>
         </div>
       </div>
