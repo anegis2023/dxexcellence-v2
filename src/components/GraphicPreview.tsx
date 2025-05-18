@@ -1,9 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useEventContext } from '../context/EventContext';
 
 const GraphicPreview: React.FC = () => {
   const { userPhoto, userName, selectedTemplate, templates } = useEventContext();
   const graphicRef = useRef<HTMLDivElement>(null);
+  const [fontSize, setFontSize] = useState<string>('2.25rem');
+  const [bottomPadding, setBottomPadding] = useState<string>('6rem'); // 24 * 4 = 96px (bottom-24)
+  
+  // Update font size based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setFontSize('1.5rem');
+        setBottomPadding('3rem'); // 12 * 4 = 48px (half of desktop)
+      } else {
+        setFontSize('2.25rem');
+        setBottomPadding('6rem'); // 24 * 4 = 96px (original)
+      }
+    };
+    
+    // Set initial size
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   const template = templates[selectedTemplate];
   
@@ -72,13 +96,19 @@ const GraphicPreview: React.FC = () => {
         )}
         
         <div 
-          className="absolute bottom-24 left-0 right-0 text-center"
+          className="absolute left-0 right-0 text-center"
           style={{
             width: '100%',
-            padding: '0 20px'
+            padding: '0 20px',
+            bottom: bottomPadding
           }}
         >
-          <h4 className="text-4xl font-bold text-[#7FE7F3]">{userName || 'Your Name'}</h4>
+          <h4 
+            className="font-bold text-[#7FE7F3]"
+            style={{ fontSize: fontSize }}
+          >
+            {userName || 'Your Name'}
+          </h4>
         </div>
       </div>
     </div>

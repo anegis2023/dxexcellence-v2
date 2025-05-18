@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom styles for the graphic preview */
+#graphic-preview {
+  aspect-ratio: 1 / 1;
+  height: auto !important;
+  max-height: 600px;
+}
+
+@media (max-width: 768px) {
+  #graphic-preview {
+    width: 100% !important;
+    max-width: 100%;
+  }
+  
+  /* Make profile image container proportionally smaller on mobile */
+  .profile-container {
+    width: 50% !important;
+    height: 50% !important;
+  }
+  
+  /* Make name font size proportionally smaller on mobile */
+  #graphic-preview h4 {
+    font-size: 2rem !important;
+  }
+}
