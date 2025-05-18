@@ -12,7 +12,7 @@ const TemplateSelector: React.FC = () => {
   return (
     <div className="template-selector">
       <div className="flex justify-between items-center mb-6">
-        <p className="text-gray-600">
+        <p className="text-[#380e5b]">
           Choose from our professionally designed templates.
         </p>
       </div>
@@ -23,7 +23,7 @@ const TemplateSelector: React.FC = () => {
             key={template.id}
             className={`template-card relative rounded-lg overflow-hidden cursor-pointer border-2 transition-all ${
               selectedTemplate === index
-                ? 'border-blue-500 shadow-md selected'
+                ? 'border-[#72edff] shadow-md selected'
                 : 'border-transparent hover:border-gray-300'
             }`}
             onClick={() => handleTemplateSelect(index)}
@@ -36,8 +36,8 @@ const TemplateSelector: React.FC = () => {
               />
               
               {selectedTemplate === index && (
-                <div className="absolute inset-0 bg-blue-500 bg-opacity-20 flex items-center justify-center">
-                  <div className="absolute top-2 right-2 bg-blue-500 text-white p-1 rounded-full">
+                <div className="absolute inset-0 bg-[#72edff] bg-opacity-20 flex items-center justify-center">
+                  <div className="absolute top-2 right-2 bg-[#380e5b] text-white p-1 rounded-full">
                     <Check size={16} />
                   </div>
                 </div>
@@ -45,7 +45,7 @@ const TemplateSelector: React.FC = () => {
             </div>
             
             <div className="p-2 bg-white">
-              <h3 className="text-sm font-medium text-gray-800 truncate">
+              <h3 className="text-sm font-medium text-[#380e5b] truncate">
                 {template.name}
               </h3>
             </div>
@@ -53,7 +53,7 @@ const TemplateSelector: React.FC = () => {
         ))}
       </div>
       
-      <div className="mt-6 text-sm text-gray-500">
+      <div className="mt-6 text-sm text-[#380e5b]">
         <p>All templates are optimized for LinkedIn sharing with the perfect dimensions and professional design.</p>
       </div>
     </div>
