@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120" viewBox="0 0 400 120">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6b46c1" />
+      <stop offset="50%" stop-color="#e74694" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+  <g>
+    <!-- Circle with gradient -->
+    <circle cx="60" cy="60" r="50" fill="url(#gradient)" />
+    
+    <!-- DX text in circle -->
+    <text x="30" y="70" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#7FE7F3">DX</text>
+    
+    <!-- EXCELLENCE text -->
+    <text x="120" y="70" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#6b46c1">EXCELLENCE</text>
+  </g>
+</svg>
