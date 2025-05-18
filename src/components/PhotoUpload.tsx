@@ -1,5 +1,5 @@
 import React, { useState, useRef, ChangeEvent } from 'react';
-import { Upload, X, Image, Check } from 'lucide-react';
+import { Upload, X, Check } from 'lucide-react';
 import { useEventContext } from '../context/EventContext';
 
 const PhotoUpload: React.FC = () => {
@@ -157,7 +157,7 @@ const PhotoUpload: React.FC = () => {
       )}
       
       <div className="mt-6 text-center">
-        <h3 className="font-medium text-gray-800 mb-2">Photo Guidelines:</h3>
+        <h3 className="font-medium text-[#380e5b] mb-2">Photo guidelines:</h3>
         <ul className="text-sm text-gray-600 space-y-1">
           <li>• Use a square image (500x500px or larger)</li>
           <li>• Use a professional headshot or clear profile picture</li>

@@ -28,16 +28,16 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#72edff]">
-              Create Your DX EXCELLENTS conference graphics
+              Create Your DX EXCELLENCE conference graphics
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#72edff]">
-              Stand out on LinkedIn with eye-catching DX EXCELLENTS conference graphics in seconds!
+              Stand out on LinkedIn with eye-catching DX EXCELLENCE conference graphics in seconds!
             </p>
             <Link
               to="/generator"
               className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
             >
-              ClickK to create Your LinkedIn graphics
+              Click to create Your LinkedIn graphics
             </Link>
           </div>
         </div>
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Camera size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Upload Your Photo</h3>
+              <h3 className="text-xl font-semibold mb-2">Upload Your photo</h3>
               <p className="text-gray-600">
                 Upload your professional headshot or profile picture
               </p>
@@ -65,7 +65,7 @@ const Home: React.FC = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Users size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Enter Your Details</h3>
+              <h3 className="text-xl font-semibold mb-2">Enter Your details</h3>
               <p className="text-gray-600">
                 Provide your name and email to personalize your graphics
               </p>
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Image size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Choose a Template</h3>
+              <h3 className="text-xl font-semibold mb-2">Choose a template</h3>
               <p className="text-gray-600">
                 Select from our professionally designed templates
               </p>
@@ -95,19 +95,19 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16" style={{ background: 'linear-gradient(140deg, #dce2fd, #e2e4f8)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-gray-800">
-            Ready to Stand Out at DX EXCELLENTS Conference?
+          <h2 className="text-3xl font-bold mb-4 text-[#380e5b]">
+            Ready to Stand Out at DX EXCELLENCE conference?
           </h2>
-          <p className="text-xl mb-8 text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl mb-8 text-[#380e5b] max-w-3xl mx-auto">
             Create your custom conference graphics now and show your network you're participating in this exclusive professional event.
           </p>
           <Link
             to="/generator"
             className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
           >
-            Start Creating
+            Click to start creating
           </Link>
         </div>
       </section>

@@ -109,8 +109,8 @@ const Generator: React.FC = () => {
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in" style={{ background: 'linear-gradient(to right, #a0f2fe, #f6f6db)' }}>
-      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        Create Your DX EXCELLENCE Conference graphics
+      <h1 className="text-3xl font-bold text-center mb-8 text-[#380e5b]">
+        Create Your DX EXCELLENCE conference graphics
       </h1>
       
       <div className="mb-8">
@@ -126,7 +126,7 @@ const Generator: React.FC = () => {
                     ? 'bg-[#72edff]' 
                     : currentStep === step 
                       ? 'bg-[#380e5b]' 
-                      : 'bg-gray-300'
+                      : 'bg-[#dbe2fe]'
                 }`}
               >
                 {step}
@@ -141,7 +141,7 @@ const Generator: React.FC = () => {
           ))}
         </div>
         
-        <div className="h-2 w-full bg-gray-200 rounded-full mt-4 max-w-3xl mx-auto">
+        <div className="h-2 w-full bg-[#dbe2fe] rounded-full mt-4 max-w-3xl mx-auto">
           <div 
             className="h-full bg-[#380e5b] rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / totalSteps) * 100}%` }}
@@ -152,35 +152,35 @@ const Generator: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         {currentStep === 1 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Upload Your Photo</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Upload Your photo</h2>
             <PhotoUpload />
           </div>
         )}
         
         {currentStep === 2 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Enter Your Details</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Enter Your details</h2>
             <UserForm />
           </div>
         )}
         
         {currentStep === 3 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Choose a Template</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Choose a template</h2>
             <TemplateSelector />
           </div>
         )}
         
         {currentStep === 4 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Preview & Download</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Preview & Download</h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1">
                 <GraphicPreview />
               </div>
               <div className="md:w-1/3">
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-2">Your Information</h3>
+                  <h3 className="font-semibold text-lg mb-2 text-[#380e5b]">Your information</h3>
                   <p className="mb-1"><span className="font-medium">Name:</span> {userName}</p>
                   <p className="mb-4"><span className="font-medium">Email:</span> {userEmail}</p>
                   

@@ -25,7 +25,7 @@ const Header: React.FC = () => {
                   to="/generator" 
                   className="text-gray-600 hover:text-[#0F172A] transition-colors"
                 >
-                  Create Graphics
+                  Create graphics
                 </Link>
               </li>
             </ul>
