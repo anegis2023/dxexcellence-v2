@@ -176,7 +176,7 @@ const Generator: React.FC = () => {
                     ? 'bg-[#72edff]' 
                     : currentStep === step 
                       ? 'bg-[#380e5b]' 
-                      : 'bg-[#dbe2fe]'
+                      : 'bg-[#dacfe2]'
                 }`}
               >
                 {step}
@@ -191,7 +191,7 @@ const Generator: React.FC = () => {
           ))}
         </div>
         
-        <div className="h-2 w-full bg-[#dbe2fe] rounded-full mt-4 max-w-3xl mx-auto">
+        <div className="h-2 w-full bg-[#dacfe2] rounded-full mt-4 max-w-3xl mx-auto">
           <div 
             className="h-full bg-[#380e5b] rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / totalSteps) * 100}%` }}
