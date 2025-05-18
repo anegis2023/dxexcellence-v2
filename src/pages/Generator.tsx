@@ -89,7 +89,7 @@ const Generator: React.FC = () => {
       
       const link = document.createElement('a');
       link.href = dataUrl;
-      link.download = `dx-excellence-event-${userName.toLowerCase().replace(/\s+/g, '-')}.png`;
+      link.download = `dx-excellents-conference-${userName.toLowerCase().replace(/\s+/g, '-')}.png`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -108,9 +108,9 @@ const Generator: React.FC = () => {
   const canDownload = userPhoto && userName && userEmail && selectedTemplate !== -1;
   
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in" style={{ background: 'linear-gradient(to right, #a0f2fe, #f6f6db)' }}>
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
-        Create Your DX Excellence Event Graphic
+        Create Your DX EXCELLENCE Conference graphics
       </h1>
       
       <div className="mb-8">
@@ -118,14 +118,14 @@ const Generator: React.FC = () => {
           {[1, 2, 3, 4].map(step => (
             <div 
               key={step}
-              className={`flex flex-col items-center ${currentStep >= step ? 'text-[#0F172A]' : 'text-gray-400'}`}
+              className={`flex flex-col items-center ${currentStep >= step ? 'text-[#380e5b]' : 'text-gray-400'}`}
             >
               <div 
                 className={`w-10 h-10 rounded-full flex items-center justify-center text-white mb-2 ${
                   currentStep > step 
-                    ? 'bg-green-500' 
+                    ? 'bg-[#72edff]' 
                     : currentStep === step 
-                      ? 'bg-[#0F172A]' 
+                      ? 'bg-[#380e5b]' 
                       : 'bg-gray-300'
                 }`}
               >
@@ -143,7 +143,7 @@ const Generator: React.FC = () => {
         
         <div className="h-2 w-full bg-gray-200 rounded-full mt-4 max-w-3xl mx-auto">
           <div 
-            className="h-full bg-[#0F172A] rounded-full transition-all duration-300"
+            className="h-full bg-[#380e5b] rounded-full transition-all duration-300"
             style={{ width: `${(currentStep / totalSteps) * 100}%` }}
           ></div>
         </div>
@@ -189,7 +189,7 @@ const Generator: React.FC = () => {
                     disabled={!canDownload || isGenerating}
                     className={`w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-lg font-medium ${
                       canDownload && !isGenerating
-                        ? 'bg-[#0F172A] text-white hover:bg-[#1E293B]'
+                        ? 'bg-[#72edff] text-[#380e5b] hover:bg-[#5ad8e9]'
                         : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                     } transition-colors duration-200`}
                   >
@@ -221,7 +221,7 @@ const Generator: React.FC = () => {
             className={`flex items-center space-x-2 py-2 px-4 rounded-lg font-medium ${
               currentStep === 1
                 ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                : 'bg-[#380e5b] text-white hover:bg-[#4d1a76]'
             } transition-colors duration-200`}
           >
             <ArrowLeft size={20} />
@@ -239,7 +239,7 @@ const Generator: React.FC = () => {
                 (currentStep === 2 && !canProceedToStep3) || 
                 (currentStep === 3 && !canProceedToStep4)
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-[#0F172A] text-white hover:bg-[#1E293B]'
+                  : 'bg-[#72edff] text-[#380e5b] hover:bg-[#5ad8e9]'
               } transition-colors duration-200`}
             >
               <span>Next</span>

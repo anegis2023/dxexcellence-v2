@@ -1,39 +1,57 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Image, Download, Users } from 'lucide-react';
+import animatedBg from '../assets/images/animated-bg.avif';
 
 const Home: React.FC = () => {
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
-      <section className="bg-[#0F172A] text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative text-white py-16 md:py-24 overflow-hidden">
+        {/* Animated Background */}
+        <div className="absolute inset-0 w-full h-full bg-[#0F172A] z-0 overflow-hidden">
+          <div className="absolute inset-0 animate-pulse-slow">
+            <img 
+              src={animatedBg} 
+              alt="Animated background" 
+              className="w-full h-full object-cover" 
+              style={{
+                mixBlendMode: 'screen',
+                opacity: 0.8
+              }}
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A] via-transparent to-[#0F172A] opacity-40"></div>
+        </div>
+        
+        {/* Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Create Your DX Excellence Event Graphics
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#72edff]">
+              Create Your DX EXCELLENTS conference graphics
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Generate professional promotional graphics for DX Excellence events in seconds
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#72edff]">
+              Stand out on LinkedIn with eye-catching DX EXCELLENTS conference graphics in seconds!
             </p>
             <Link
               to="/generator"
-              className="inline-block bg-white text-[#0F172A] font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-gray-100 transition-colors duration-200"
+              className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
             >
-              Create Your Graphics
+              ClickK to create Your LinkedIn graphics
             </Link>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16" style={{ background: 'linear-gradient(to right, #a0f2fe, #f6f6db)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-            How It Works
+            How it works?
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm text-center template-card">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Camera size={24} />
               </div>
@@ -43,7 +61,7 @@ const Home: React.FC = () => {
               </p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm text-center template-card">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Users size={24} />
               </div>
@@ -53,7 +71,7 @@ const Home: React.FC = () => {
               </p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm text-center template-card">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Image size={24} />
               </div>
@@ -63,7 +81,7 @@ const Home: React.FC = () => {
               </p>
             </div>
             
-            <div className="bg-gray-50 p-6 rounded-lg shadow-sm text-center template-card">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
                 <Download size={24} />
               </div>
@@ -80,14 +98,14 @@ const Home: React.FC = () => {
       <section className="py-16 bg-gray-50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4 text-gray-800">
-            Ready to Stand Out at DX Excellence Events?
+            Ready to Stand Out at DX EXCELLENTS Conference?
           </h2>
           <p className="text-xl mb-8 text-gray-600 max-w-3xl mx-auto">
-            Create your custom event graphics now and show your network you're participating in this exclusive professional event.
+            Create your custom conference graphics now and show your network you're participating in this exclusive professional event.
           </p>
           <Link
             to="/generator"
-            className="inline-block bg-[#0F172A] text-white font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-[#1E293B] transition-colors duration-200"
+            className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
           >
             Start Creating
           </Link>
