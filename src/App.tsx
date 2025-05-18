@@ -1,4 +1,3 @@
-import React from 'react';
 import { useEffect } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Header from './components/Header';
@@ -16,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <EventProvider>
-        <div className="flex flex-col min-h-screen bg-gray-50">
+        <div className="flex flex-col min-h-screen" style={{ background: 'linear-gradient(to right, rgb(160, 242, 254), rgb(246, 246, 219))' }}>
           <Header />
           <main className="flex-grow">
             <Routes>

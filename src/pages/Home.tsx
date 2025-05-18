@@ -44,7 +44,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16" style={{ background: 'linear-gradient(to right, #a0f2fe, #f6f6db)' }}>
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
             How it works?
@@ -95,7 +95,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16" style={{ background: 'linear-gradient(140deg, #dce2fd, #e2e4f8)' }}>
+      <section className="py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4 text-[#380e5b]">
             Ready to Stand Out at DX EXCELLENCE conference?

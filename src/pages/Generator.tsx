@@ -158,7 +158,7 @@ const Generator: React.FC = () => {
   const canDownload = userPhoto && userName && userEmail && selectedTemplate !== -1;
   
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in" style={{ background: 'linear-gradient(to right, #a0f2fe, #f6f6db)' }}>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
       <h1 className="text-3xl font-bold text-center mb-8 text-[#380e5b]">
         Create Your DX EXCELLENCE conference graphics
       </h1>
