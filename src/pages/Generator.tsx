@@ -132,9 +132,9 @@ const Generator: React.FC = () => {
                 {step}
               </div>
               <span className="text-sm font-medium hidden sm:block">
-                {step === 1 && 'Upload Photo'}
-                {step === 2 && 'Your Details'}
-                {step === 3 && 'Select Template'}
+                {step === 1 && 'Upload photo'}
+                {step === 2 && 'Your details'}
+                {step === 3 && 'Select template'}
                 {step === 4 && 'Preview & Download'}
               </span>
             </div>
