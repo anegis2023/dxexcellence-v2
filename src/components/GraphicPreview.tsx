@@ -75,8 +75,9 @@ const GraphicPreview: React.FC = () => {
             }}
           >
             <div 
-              className="rounded-full overflow-hidden border-[8px] border-[#72edff] shadow-lg"
+              className="rounded-full overflow-hidden border-[8px] shadow-lg"
               style={{
+                borderColor: template ? template.primaryColor : '#72edff',
                 width: '100%',
                 height: '100%',
                 position: 'relative'
@@ -104,8 +105,11 @@ const GraphicPreview: React.FC = () => {
           }}
         >
           <h4 
-            className="font-bold text-[#7FE7F3]"
-            style={{ fontSize: fontSize }}
+            className="font-bold"
+            style={{ 
+              fontSize: fontSize,
+              color: template ? template.textColor : '#7FE7F3'
+            }}
           >
             {userName || 'Your Name'}
           </h4>

@@ -87,7 +87,7 @@ const Generator: React.FC = () => {
         profileImgContainer.style.height = '100%';
         profileImgContainer.style.borderRadius = '50%';
         profileImgContainer.style.overflow = 'hidden';
-        profileImgContainer.style.border = '16px solid #72edff';
+        profileImgContainer.style.border = `16px solid ${template.primaryColor}`;
         profileImgContainer.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         
         const profileImg = document.createElement('img');
@@ -115,7 +115,7 @@ const Generator: React.FC = () => {
       nameText.textContent = userName || 'Your Name';
       nameText.style.fontSize = '72px';
       nameText.style.fontWeight = 'bold';
-      nameText.style.color = '#7FE7F3';
+      nameText.style.color = template.textColor;
       nameText.style.marginBottom = '24px';
       
       nameContainer.appendChild(nameText);

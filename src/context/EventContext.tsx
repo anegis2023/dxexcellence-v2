@@ -5,6 +5,8 @@ interface Template {
   id: string;
   name: string;
   imageUrl: string;
+  primaryColor: string; // Color for the oval ring
+  textColor: string; // Color for the name text
 }
 
 interface EventContextType {
