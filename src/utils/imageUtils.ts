@@ -16,11 +16,14 @@ export function importBackgroundImages() {
     'ENGLISH template for attende.png': { primaryColor: '#72edff', textColor: '#72edff' },
     'ENGLISH template for attende 2.png': { primaryColor: '#380e5b', textColor: '#380e5b' },
     'ENGLISH template for attende 3.png': { primaryColor: '#380e5b', textColor: '#380e5b' },
+    'ENGLISH template for attende 4.png': { primaryColor: '#72edff', textColor: '#72edff' },
     
     // Polish templates
     'POLISH template for attende.png': { primaryColor: '#72edff', textColor: '#72edff' },
     'POLISH template for attende 2.png': { primaryColor: '#380e5b', textColor: '#380e5b' },
     'POLISH template for attende 3.png': { primaryColor: '#380e5b', textColor: '#380e5b' },
+    'POLISH template for attende 4.png': { primaryColor: '#72edff', textColor: '#72edff' },
+    
   };
   
   // Transform the modules into a usable format for our templates
