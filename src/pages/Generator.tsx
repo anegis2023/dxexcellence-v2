@@ -87,7 +87,7 @@ const Generator: React.FC = () => {
         profileImgContainer.style.height = '100%';
         profileImgContainer.style.borderRadius = '50%';
         profileImgContainer.style.overflow = 'hidden';
-        profileImgContainer.style.border = '16px solid white';
+        profileImgContainer.style.border = '16px solid #72edff';
         profileImgContainer.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         
         const profileImg = document.createElement('img');
