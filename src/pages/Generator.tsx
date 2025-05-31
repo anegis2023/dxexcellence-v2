@@ -444,7 +444,7 @@ const Generator: React.FC = () => {
                     <button
                       onClick={handleDownload}
                       disabled={isGenerating || isEmailSending || isGeneratingGif}
-                      className={`flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium transition-all ${selectedTemplate !== -1 && templates[selectedTemplate]?.primaryColor === '#380e5b' ? 'bg-[#380e5b] hover:bg-[#4a1276]' : 'bg-[#72edff] hover:bg-[#5ad8ea] text-gray-800'}`}
+                      className={`flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all ${selectedTemplate !== -1 && templates[selectedTemplate]?.primaryColor === '#380e5b' ? 'bg-[#380e5b] hover:bg-[#4a1276] text-white' : 'bg-[#72edff] hover:bg-[#5ad8ea] text-[#380e5b]'}`}
                     >
                       {isGenerating || isEmailSending ? (
                         <div className="flex items-center">
@@ -463,7 +463,7 @@ const Generator: React.FC = () => {
                     <button
                       onClick={handleAnimatedGifDownload}
                       disabled={isGenerating || isEmailSending || isGeneratingGif}
-                      className={`flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium transition-all ${selectedTemplate !== -1 && templates[selectedTemplate]?.primaryColor === '#380e5b' ? 'bg-[#380e5b] hover:bg-[#4a1276]' : 'bg-[#72edff] hover:bg-[#5ad8ea] text-gray-800'}`}
+                      className={`flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-all ${selectedTemplate !== -1 && templates[selectedTemplate]?.primaryColor === '#380e5b' ? 'bg-[#380e5b] hover:bg-[#4a1276] text-white' : 'bg-[#72edff] hover:bg-[#5ad8ea] text-[#380e5b]'}`}
                     >
                       {isGeneratingGif ? (
                         <div className="flex items-center">
