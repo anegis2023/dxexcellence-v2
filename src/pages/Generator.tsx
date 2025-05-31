@@ -4,9 +4,10 @@ import TemplateSelector from '../components/TemplateSelector';
 import GraphicPreview from '../components/GraphicPreview';
 import UserForm from '../components/UserForm';
 import { useEventContext } from '../context/EventContext';
-import { Download, ArrowLeft, ArrowRight, Mail, Check, AlertCircle } from 'lucide-react';
+import { Download, ArrowLeft, ArrowRight, Mail, Check, AlertCircle, Film } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import { sendGraphicByEmail } from '../utils/emailUtils';
+import { createAnimatedGif } from '../utils/gifUtils';
 
 const Generator: React.FC = () => {
   const { userPhoto, userName, userEmail, selectedTemplate, templates } = useEventContext();
@@ -15,6 +16,9 @@ const Generator: React.FC = () => {
   const [isEmailSending, setIsEmailSending] = useState<boolean>(false);
   const [emailSent, setEmailSent] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string | null>(null);
+  const [isGeneratingGif, setIsGeneratingGif] = useState<boolean>(false);
+  const [gifProgress, setGifProgress] = useState<number>(0);
+  const [gifPreviewUrl, setGifPreviewUrl] = useState<string | null>(null);
   
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -185,6 +189,7 @@ const Generator: React.FC = () => {
     }
   };
   
+  // Generate and download the image
   const handleDownload = async () => {
     setIsGenerating(true);
     setEmailSent(false);
@@ -203,19 +208,159 @@ const Generator: React.FC = () => {
       if (userEmail) {
         await sendEmailWithGraphic(canvas);
       }
-      
-      setIsGenerating(false);
     } catch (error) {
       console.error('Error generating image:', error);
+    } finally {
       setIsGenerating(false);
-      alert('There was an error generating your image. Please try again.');
+    }
+  };
+  
+  // Generate and download animated GIF
+  const handleAnimatedGifDownload = async () => {
+    setIsGeneratingGif(true);
+    setGifProgress(0);
+    setGifPreviewUrl(null); // Clear any previous preview
+    
+    try {
+      console.log('Starting animated GIF generation');
+      
+      // Get the current template content
+      const previewElement = document.getElementById('graphic-preview');
+      if (!previewElement) {
+        throw new Error('Preview element not found');
+      }
+      
+      // Create a hidden render element for the GIF frames
+      const renderElement = document.createElement('div');
+      renderElement.style.position = 'absolute';
+      renderElement.style.left = '-9999px';
+      renderElement.style.top = '-9999px';
+      renderElement.style.width = '1080px';
+      renderElement.style.height = '1080px';
+      document.body.appendChild(renderElement);
+      
+      // Get the selected template
+      const template = selectedTemplate !== -1 ? templates[selectedTemplate] : null;
+      if (!template) {
+        throw new Error('No template selected');
+      }
+      
+      // Create a complete render element from scratch to ensure proper styling
+      // Background
+      const bgElement = document.createElement('div');
+      bgElement.style.position = 'absolute';
+      bgElement.style.top = '0';
+      bgElement.style.left = '0';
+      bgElement.style.width = '100%';
+      bgElement.style.height = '100%';
+      bgElement.style.backgroundImage = `url(${template.imageUrl})`;
+      bgElement.style.backgroundSize = 'cover';
+      bgElement.style.backgroundPosition = 'center';
+      renderElement.appendChild(bgElement);
+      
+      // Profile image with ring
+      if (userPhoto) {
+        const profileContainer = document.createElement('div');
+        profileContainer.style.position = 'absolute';
+        profileContainer.style.left = '50%';
+        profileContainer.style.top = '50%';
+        profileContainer.style.transform = 'translate(-50%, -50%) translateY(-10px)';
+        profileContainer.style.width = '540px';
+        profileContainer.style.height = '540px';
+        
+        const profileRing = document.createElement('div');
+        profileRing.id = 'animated-profile-ring';
+        profileRing.className = 'profile-ring animated-ring';
+        profileRing.setAttribute('data-is-ring', 'true');
+        profileRing.style.width = '100%';
+        profileRing.style.height = '100%';
+        profileRing.style.borderRadius = '50%';
+        profileRing.style.overflow = 'hidden';
+        profileRing.style.border = `16px solid ${template.primaryColor}`;
+        profileRing.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+        
+        const profileImg = document.createElement('img');
+        profileImg.src = userPhoto;
+        profileImg.style.width = '100%';
+        profileImg.style.height = '100%';
+        profileImg.style.objectFit = 'cover';
+        
+        // Ensure image is loaded
+        await new Promise((resolve) => {
+          if (profileImg.complete) {
+            resolve(null);
+          } else {
+            profileImg.onload = () => resolve(null);
+            profileImg.onerror = () => resolve(null);
+          }
+        });
+        
+        profileRing.appendChild(profileImg);
+        profileContainer.appendChild(profileRing);
+        renderElement.appendChild(profileContainer);
+      }
+      
+      // Name text - positioned 50px higher than before
+      const nameContainer = document.createElement('div');
+      nameContainer.style.position = 'absolute';
+      nameContainer.style.left = '0';
+      nameContainer.style.right = '0';
+      nameContainer.style.width = '100%';
+      nameContainer.style.textAlign = 'center';
+      nameContainer.style.padding = '0 20px';
+      nameContainer.style.bottom = 'calc(6rem + 110px)'; // Move up by 110px from the original position (moved down 15px from previous)
+      
+      const nameText = document.createElement('h2'); // Restore to h2 as originally used
+      nameText.innerText = userName || 'Your Name';
+      nameText.style.fontSize = '55px'; // Increased to 55px as requested
+      nameText.style.fontWeight = 'bold';
+      nameText.style.color = template.textColor;
+      
+      nameContainer.appendChild(nameText);
+      renderElement.appendChild(nameContainer);
+      
+      console.log('Render element prepared, starting GIF generation');
+      
+      // Create animated GIF with progress tracking
+      const gifBlob = await createAnimatedGif(
+        renderElement,
+        userName,
+        (progress) => {
+          console.log(`GIF progress: ${Math.round(progress * 100)}%`);
+          setGifProgress(Math.round(progress * 100));
+        }
+      );
+      
+      console.log('GIF generation complete, creating preview');
+      
+      // Create a URL for the preview
+      const previewUrl = URL.createObjectURL(gifBlob);
+      setGifPreviewUrl(previewUrl);
+      
+      // Download the GIF
+      const link = document.createElement('a');
+      link.download = `dx-excellence-animated-${userName || 'graphic'}.gif`;
+      link.href = previewUrl;
+      link.click();
+      
+      // Clean up
+      document.body.removeChild(renderElement);
+      
+      console.log('Animated GIF created and downloaded successfully');
+    } catch (error) {
+      console.error('Error generating animated GIF:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      alert(`There was an error generating the animated GIF: ${errorMessage}. Please try again.`);
+    } finally {
+      setIsGeneratingGif(false);
     }
   };
   
   const canProceedToStep2 = !!userPhoto;
   const canProceedToStep3 = !!userName && !!userEmail;
   const canProceedToStep4 = selectedTemplate !== -1;
-  const canDownload = userPhoto && userName && userEmail && selectedTemplate !== -1;
+  // Used for disabling the download buttons
+  const isDownloadReady = userPhoto && userName && userEmail && selectedTemplate !== -1;
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
@@ -294,30 +439,62 @@ const Generator: React.FC = () => {
                   <p className="mb-1"><span className="font-medium">Name:</span> {userName}</p>
                   <p className="mb-4"><span className="font-medium">Email:</span> {userEmail}</p>
                   
-                  <button
-                    onClick={handleDownload}
-                    disabled={!canDownload || isGenerating || isEmailSending}
-                    className={`w-full flex items-center justify-center space-x-2 py-3 px-4 rounded-lg font-medium ${
-                      canDownload && !isGenerating && !isEmailSending
-                        ? 'bg-[#72edff] text-[#380e5b] hover:bg-[#5ad8e9]'
-                        : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    } transition-colors duration-200`}
-                  >
-                    {isGenerating || isEmailSending ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span>{isGenerating ? 'Generating...' : 'Sending Email...'}</span>
-                      </>
-                    ) : (
-                      <>
-                        {userEmail ? <Mail size={20} className="mr-1" /> : <Download size={20} />}
-                        <span>{userEmail ? 'Download & Send graphic' : 'Download Graphic'}</span>
-                      </>
-                    )}
-                  </button>
+                  <div className="flex flex-col gap-3 w-full">
+                    {/* Download & Send Email Button */}
+                    <button
+                      onClick={handleDownload}
+                      disabled={isGenerating || isEmailSending || isGeneratingGif}
+                      className={`flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium transition-all ${selectedTemplate !== -1 && templates[selectedTemplate]?.primaryColor === '#380e5b' ? 'bg-[#380e5b] hover:bg-[#4a1276]' : 'bg-[#72edff] hover:bg-[#5ad8ea] text-gray-800'}`}
+                    >
+                      {isGenerating || isEmailSending ? (
+                        <div className="flex items-center">
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          <span>{isEmailSending ? 'Sending Email...' : 'Generating...'}</span>
+                        </div>
+                      ) : (
+                        <>
+                          {userEmail ? <Mail size={20} className="mr-1" /> : <Download size={20} />}
+                          <span>{userEmail ? 'Download & Send graphic' : 'Download Graphic'}</span>
+                        </>
+                      )}
+                    </button>
+                    
+                    {/* Animated GIF Button */}
+                    <button
+                      onClick={handleAnimatedGifDownload}
+                      disabled={isGenerating || isEmailSending || isGeneratingGif}
+                      className={`flex items-center justify-center px-6 py-3 rounded-lg text-white font-medium transition-all ${selectedTemplate !== -1 && templates[selectedTemplate]?.primaryColor === '#380e5b' ? 'bg-[#380e5b] hover:bg-[#4a1276]' : 'bg-[#72edff] hover:bg-[#5ad8ea] text-gray-800'}`}
+                    >
+                      {isGeneratingGif ? (
+                        <div className="flex items-center">
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          <span>Creating GIF... {gifProgress}%</span>
+                        </div>
+                      ) : (
+                        <>
+                          <Film size={20} className="mr-1" />
+                          <span>Download Animated GIF</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  
+                  {/* GIF Preview */}
+                  {gifPreviewUrl && (
+                    <div className="mt-4 border rounded-lg overflow-hidden" style={{ borderColor: '#dbdde1' }}>
+                      <div className="bg-gray-50 px-4 py-2 border-b" style={{ borderColor: '#dbdde1' }}>
+                        <h4 className="font-medium text-[#380e5b]">Animated GIF Preview</h4>
+                      </div>
+                      <div className="p-4 flex justify-center">
+                        <img 
+                          src={gifPreviewUrl} 
+                          alt="Animated GIF Preview" 
+                          className="max-w-full rounded shadow-sm" 
+                          style={{ maxHeight: '300px' }} 
+                        />
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Email status indicators */}
                   {emailSent && (
