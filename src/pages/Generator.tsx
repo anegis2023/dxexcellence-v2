@@ -152,16 +152,30 @@ const Generator: React.FC = () => {
     setEmailSent(false);
     
     try {
+      console.log('Sending email to:', userEmail);
       const result = await sendGraphicByEmail(userEmail, canvas, userName || 'User');
       
       if (result.success) {
+        console.log('Email sent successfully');
         setEmailSent(true);
       } else {
-        setEmailError('Failed to send email. Please try again.');
+        // Get detailed error message
+        const errorMessage = result.message || 'Failed to send email. Please try again.';
+        console.error('Email sending failed with message:', errorMessage);
+        
+        // Check for common errors
+        if (errorMessage.includes('4MB')) {
+          setEmailError('Image is too large to send via email. Try a smaller image.');
+        } else if (errorMessage.includes('configured')) {
+          setEmailError('Email service is not properly configured. Please check the console for details.');
+        } else {
+          setEmailError(`Failed to send email: ${errorMessage}`);
+        }
       }
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
       console.error('Error sending email:', error);
-      setEmailError('An error occurred while sending the email.');
+      setEmailError(`An error occurred: ${errorMessage}`);
     } finally {
       setIsEmailSending(false);
     }

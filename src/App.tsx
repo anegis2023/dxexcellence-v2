@@ -15,18 +15,29 @@ function App() {
     
     // Initialize EmailJS
     console.log('App component mounted, initializing EmailJS...');
-    initEmailJS();
     
-    // Log environment variables (without revealing full values)
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'not set';
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'not set';
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'not set';
+    // Check for environment variables
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     
-    console.log('Environment variables loaded:', {
-      publicKey: publicKey ? publicKey.substring(0, 4) + '...' : 'not set',
-      serviceId: serviceId ? serviceId.substring(0, 4) + '...' : 'not set',
-      templateId: templateId ? templateId.substring(0, 4) + '...' : 'not set'
+    // Log environment variable status
+    console.log('Environment variables check:', {
+      publicKey: publicKey ? `Present (${publicKey.substring(0, 4)}...)` : 'MISSING',
+      serviceId: serviceId ? `Present (${serviceId.substring(0, 4)}...)` : 'MISSING',
+      templateId: templateId ? `Present (${templateId.substring(0, 4)}...)` : 'MISSING'
     });
+    
+    // Check if we're in development or production
+    console.log('Running in:', import.meta.env.MODE, 'mode');
+    
+    // Log Netlify-specific environment variables if present
+    if (import.meta.env.NETLIFY) {
+      console.log('Running on Netlify:', import.meta.env.NETLIFY);
+    }
+    
+    // Initialize EmailJS after logging
+    initEmailJS();
   }, []);
   
   return (
