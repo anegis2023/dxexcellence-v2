@@ -31,6 +31,62 @@ export const initEmailJS = () => {
   }
 };
 
+// Function to compress an image to fit within EmailJS size limits (500KB)
+const compressImageForEmail = (canvas: HTMLCanvasElement, maxSizeKB: number = 500): string => {
+  // Start with high quality
+  let quality = 0.9;
+  let dataUrl = canvas.toDataURL('image/jpeg', quality);
+  let estimatedSize = Math.round((dataUrl.length * 3) / 4); // Rough estimate of base64 size
+  
+  console.log(`Initial image size with quality ${quality}: ${Math.round(estimatedSize / 1024)} KB`);
+  
+  // Gradually reduce quality until the image is under the size limit
+  while (estimatedSize > maxSizeKB * 1024 && quality > 0.1) {
+    quality -= 0.1;
+    quality = Math.max(0.1, quality); // Don't go below 0.1
+    
+    dataUrl = canvas.toDataURL('image/jpeg', quality);
+    estimatedSize = Math.round((dataUrl.length * 3) / 4);
+    
+    console.log(`Compressed image with quality ${quality.toFixed(1)}: ${Math.round(estimatedSize / 1024)} KB`);
+  }
+  
+  // If still too large, resize the canvas
+  if (estimatedSize > maxSizeKB * 1024) {
+    console.log('Image still too large after quality reduction, resizing...');
+    
+    // Create a temporary canvas for resizing
+    const tempCanvas = document.createElement('canvas');
+    const ctx = tempCanvas.getContext('2d');
+    
+    if (!ctx) {
+      throw new Error('Could not get canvas context for resizing');
+    }
+    
+    // Start with 90% of original size and reduce until under limit
+    let scale = 0.9;
+    
+    while (estimatedSize > maxSizeKB * 1024 && scale > 0.3) {
+      tempCanvas.width = canvas.width * scale;
+      tempCanvas.height = canvas.height * scale;
+      
+      // Draw the original canvas onto the smaller canvas
+      ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 
+                   0, 0, tempCanvas.width, tempCanvas.height);
+      
+      dataUrl = tempCanvas.toDataURL('image/jpeg', quality);
+      estimatedSize = Math.round((dataUrl.length * 3) / 4);
+      
+      console.log(`Resized to ${Math.round(scale * 100)}% with size: ${Math.round(estimatedSize / 1024)} KB`);
+      
+      scale -= 0.1;
+    }
+  }
+  
+  console.log(`Final image size: ${Math.round(estimatedSize / 1024)} KB`);
+  return dataUrl;
+};
+
 // Function to send email with canvas image attachment
 export const sendGraphicByEmail = async (
   email: string, 
@@ -55,20 +111,12 @@ export const sendGraphicByEmail = async (
       throw new Error('EmailJS template ID is not configured');
     }
     
-    // Convert canvas to base64 data URL
-    const dataUrl = canvas.toDataURL('image/png');
-    console.log('Image data URL length:', dataUrl.length);
+    // Compress the image to ensure it's under 500KB for EmailJS
+    console.log('Compressing image for email attachment...');
+    const compressedDataUrl = compressImageForEmail(canvas, 480); // Slightly under 500KB to be safe
     
-    // Check if the image is too large (EmailJS has a 4MB limit)
-    const estimatedSize = Math.round((dataUrl.length * 3) / 4); // Rough estimate of base64 size
-    console.log('Estimated attachment size:', Math.round(estimatedSize / 1024), 'KB');
-    
-    if (estimatedSize > 4 * 1024 * 1024) {
-      throw new Error('Image is too large to send via email (over 4MB)');
-    }
-    
-    // Remove the data:image/png;base64, prefix
-    const base64Image = dataUrl.split(',')[1];
+    // Remove the data:image/jpeg;base64, prefix
+    const base64Image = compressedDataUrl.split(',')[1];
     
     // Prepare template parameters
     const templateParams = {
@@ -78,7 +126,7 @@ export const sendGraphicByEmail = async (
       graphic_content: base64Image // This name must match the parameter name in EmailJS template
     };
     
-    console.log('Sending email with attachment...');
+    console.log('Sending email with compressed attachment...');
     
     // Send email with the base64 image data
     const response = await emailjs.send(

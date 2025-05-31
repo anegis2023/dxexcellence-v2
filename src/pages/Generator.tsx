@@ -153,6 +153,8 @@ const Generator: React.FC = () => {
     
     try {
       console.log('Sending email to:', userEmail);
+      console.log('Canvas dimensions for email:', canvas.width, 'x', canvas.height);
+      
       const result = await sendGraphicByEmail(userEmail, canvas, userName || 'User');
       
       if (result.success) {
@@ -164,10 +166,12 @@ const Generator: React.FC = () => {
         console.error('Email sending failed with message:', errorMessage);
         
         // Check for common errors
-        if (errorMessage.includes('4MB')) {
-          setEmailError('Image is too large to send via email. Try a smaller image.');
+        if (errorMessage.includes('size') || errorMessage.includes('KB') || errorMessage.includes('MB')) {
+          setEmailError('Image was automatically compressed to fit email size limits.');
         } else if (errorMessage.includes('configured')) {
           setEmailError('Email service is not properly configured. Please check the console for details.');
+        } else if (errorMessage.includes('context')) {
+          setEmailError('Error processing image. Please try a different browser or device.');
         } else {
           setEmailError(`Failed to send email: ${errorMessage}`);
         }
