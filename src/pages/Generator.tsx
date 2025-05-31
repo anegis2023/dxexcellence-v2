@@ -314,21 +314,21 @@ const Generator: React.FC = () => {
                     ) : (
                       <>
                         {userEmail ? <Mail size={20} className="mr-1" /> : <Download size={20} />}
-                        <span>{userEmail ? 'Download & Send Email' : 'Download Graphic'}</span>
+                        <span>{userEmail ? 'Download & Send graphic' : 'Download Graphic'}</span>
                       </>
                     )}
                   </button>
                   
                   {/* Email status indicators */}
                   {emailSent && (
-                    <div className="mt-3 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded flex items-center">
+                    <div className="mt-3 px-4 py-2 rounded flex items-center" style={{ backgroundColor: '#dbdde1', borderColor: '#dbdde1', color: 'rgb(56, 14, 91)', border: '1px solid' }}>
                       <Check size={16} className="mr-2" />
                       <span>Graphic sent successfully to your email!</span>
                     </div>
                   )}
                   
                   {emailError && (
-                    <div className="mt-3 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded flex items-center">
+                    <div className="mt-3 px-4 py-2 rounded flex items-center" style={{ backgroundColor: '#dbdde1', borderColor: '#dbdde1', color: 'rgb(56, 14, 91)', border: '1px solid' }}>
                       <AlertCircle size={16} className="mr-2" />
                       <span>{emailError}</span>
                     </div>
