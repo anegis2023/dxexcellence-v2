@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import PhotoUpload from '../components/PhotoUpload';
 import TemplateSelector from '../components/TemplateSelector';
 import GraphicPreview from '../components/GraphicPreview';
@@ -10,6 +11,7 @@ import { sendGraphicByEmail } from '../utils/emailUtils';
 import { createAnimatedGif } from '../utils/gifUtils';
 
 const Generator: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const { userPhoto, userName, userEmail, selectedTemplate, templates } = useEventContext();
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -158,8 +160,9 @@ const Generator: React.FC = () => {
     try {
       console.log('Sending email to:', userEmail);
       console.log('Canvas dimensions for email:', canvas.width, 'x', canvas.height);
+      console.log('Current language:', i18n.language);
       
-      const result = await sendGraphicByEmail(userEmail, canvas, userName || 'User');
+      const result = await sendGraphicByEmail(userEmail, canvas, userName || 'User', i18n.language);
       
       if (result.success) {
         console.log('Email sent successfully');
@@ -356,16 +359,20 @@ const Generator: React.FC = () => {
     }
   };
   
+  // Check if the user can proceed to the next step
+  // Step 1: Upload photo
+  // Step 2: Enter details (name and email)
+  // Step 3: Select template
   const canProceedToStep2 = !!userPhoto;
   const canProceedToStep3 = !!userName && !!userEmail;
   const canProceedToStep4 = selectedTemplate !== -1;
-  // Used for disabling the download buttons
-  const isDownloadReady = userPhoto && userName && userEmail && selectedTemplate !== -1;
+  // Check if all required data is present for each step
+  // These variables are used in the Next button's disabled state
   
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in">
       <h1 className="text-3xl font-bold text-center mb-8 text-[#380e5b]">
-        Create Your DX EXCELLENCE conference graphics
+        {t('generator.title')}
       </h1>
       
       <div className="mb-8">
@@ -387,15 +394,14 @@ const Generator: React.FC = () => {
                 {step}
               </div>
               <span className="text-sm font-medium hidden sm:block">
-                {step === 1 && 'Upload photo'}
-                {step === 2 && 'Your details'}
-                {step === 3 && 'Select template'}
-                {step === 4 && 'Preview & Download'}
+                {step === 1 && t('generator.steps.step1')}
+                {step === 2 && t('generator.steps.step2')}
+                {step === 3 && t('generator.steps.step3')}
+                {step === 4 && t('generator.steps.step4')}
               </span>
             </div>
           ))}
         </div>
-        
         <div className="h-2 w-full bg-[#dacfe2] rounded-full mt-4 max-w-3xl mx-auto">
           <div 
             className="h-full bg-[#380e5b] rounded-full transition-all duration-300"
@@ -407,38 +413,38 @@ const Generator: React.FC = () => {
       <div className="max-w-5xl mx-auto">
         {currentStep === 1 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Upload Your photo</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">{t('generator.steps.step1_title')}</h2>
             <PhotoUpload />
           </div>
         )}
         
         {currentStep === 2 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Enter Your details</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">{t('generator.steps.step2_title')}</h2>
             <UserForm />
           </div>
         )}
         
         {currentStep === 3 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Choose a template</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">{t('generator.steps.step3_title')}</h2>
             <TemplateSelector />
           </div>
         )}
         
         {currentStep === 4 && (
           <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]">Preview & Download</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-[#380e5b]" data-component-name="Generator">{t('generator.steps.step4_title')}</h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1">
                 <GraphicPreview />
               </div>
               <div className="md:w-1/3">
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-semibold text-lg mb-2 text-[#380e5b]">Your information</h3>
-                  <p className="mb-1"><span className="font-medium">Name:</span> {userName}</p>
-                  <p className="mb-4"><span className="font-medium">Email:</span> {userEmail}</p>
-                  
+                  <h3 className="font-semibold text-lg mb-2 text-[#380e5b]" data-component-name="Generator">{t('generator.labels.yourInfo')}</h3>
+                  <p className="mb-1"><span className="font-medium">{t('generator.labels.name')}:</span> {userName}</p>
+                  <p className="mb-4"><span className="font-medium">{t('generator.labels.email')}:</span> {userEmail}</p>
+                
                   <div className="flex flex-col gap-3 w-full">
                     {/* Download & Send Email Button */}
                     <button
@@ -449,12 +455,12 @@ const Generator: React.FC = () => {
                       {isGenerating || isEmailSending ? (
                         <div className="flex items-center">
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                          <span>{isEmailSending ? 'Sending Email...' : 'Generating...'}</span>
+                          <span>{isEmailSending ? t('generator.labels.sending') : t('generator.labels.generating')}</span>
                         </div>
                       ) : (
                         <>
                           {userEmail ? <Mail size={20} className="mr-1" /> : <Download size={20} />}
-                          <span>{userEmail ? 'Download & Send graphic' : 'Download Graphic'}</span>
+                          <span>{userEmail ? t('generator.buttons.downloadSend') : t('generator.buttons.download')}</span>
                         </>
                       )}
                     </button>
@@ -468,12 +474,12 @@ const Generator: React.FC = () => {
                       {isGeneratingGif ? (
                         <div className="flex items-center">
                           <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                          <span>Creating GIF... {gifProgress}%</span>
+                          <span>{t('generator.labels.creatingGif')} {gifProgress}%</span>
                         </div>
                       ) : (
                         <>
                           <Film size={20} className="mr-1" />
-                          <span>Download Animated GIF</span>
+                          <span>{t('generator.buttons.downloadGif')}</span>
                         </>
                       )}
                     </button>
@@ -483,7 +489,7 @@ const Generator: React.FC = () => {
                   {gifPreviewUrl && (
                     <div className="mt-4 border rounded-lg overflow-hidden" style={{ borderColor: '#dbdde1' }}>
                       <div className="bg-gray-50 px-4 py-2 border-b" style={{ borderColor: '#dbdde1' }}>
-                        <h4 className="font-medium text-[#380e5b]">Animated GIF Preview</h4>
+                        <h4 className="font-medium text-[#380e5b]">{t('generator.labels.gifPreview')}</h4>
                       </div>
                       <div className="p-4 flex justify-center">
                         <img 
@@ -500,7 +506,7 @@ const Generator: React.FC = () => {
                   {emailSent && (
                     <div className="mt-3 px-4 py-2 rounded flex items-center" style={{ backgroundColor: '#dbdde1', borderColor: '#dbdde1', color: 'rgb(56, 14, 91)', border: '1px solid' }}>
                       <Check size={16} className="mr-2" />
-                      <span>Graphic sent successfully to your email!</span>
+                      <span>{t('generator.labels.emailSuccess')}</span>
                     </div>
                   )}
                   
@@ -527,24 +533,24 @@ const Generator: React.FC = () => {
             } transition-colors duration-200`}
           >
             <ArrowLeft size={20} />
-            <span>Back</span>
+            <span>{t('generator.buttons.back')}</span>
           </button>
           
           {currentStep < totalSteps && (
             <button
               onClick={handleNext}
-              disabled={(currentStep === 1 && !canProceedToStep2) || 
-                       (currentStep === 2 && !canProceedToStep3) || 
-                       (currentStep === 3 && !canProceedToStep4)}
+              disabled={((currentStep as number) === 1 && !canProceedToStep2) || 
+                       ((currentStep as number) === 2 && !canProceedToStep3) || 
+                       ((currentStep as number) === 3 && !canProceedToStep4)}
               className={`flex items-center space-x-2 py-2 px-4 rounded-lg font-medium ${
-                (currentStep === 1 && !canProceedToStep2) || 
-                (currentStep === 2 && !canProceedToStep3) || 
-                (currentStep === 3 && !canProceedToStep4)
+                ((currentStep as number) === 1 && !canProceedToStep2) || 
+                ((currentStep as number) === 2 && !canProceedToStep3) || 
+                ((currentStep as number) === 3 && !canProceedToStep4)
                   ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   : 'bg-[#72edff] text-[#380e5b] hover:bg-[#5ad8e9]'
               } transition-colors duration-200`}
             >
-              <span>Next</span>
+              <span>{t('generator.buttons.next')}</span>
               <ArrowRight size={20} />
             </button>
           )}

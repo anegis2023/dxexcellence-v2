@@ -1,8 +1,10 @@
 import React from 'react';
 import { useEventContext } from '../context/EventContext';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const TemplateSelector: React.FC = () => {
+  const { t } = useTranslation();
   const { selectedTemplate, setSelectedTemplate, templates } = useEventContext();
   
   const handleTemplateSelect = (index: number) => {
@@ -12,8 +14,8 @@ const TemplateSelector: React.FC = () => {
   return (
     <div className="template-selector">
       <div className="flex justify-between items-center mb-6">
-        <p className="text-[#380e5b]">
-          Choose from our professionally designed templates.
+        <p className="text-[#380e5b]" data-component-name="TemplateSelector">
+          {t('templateSelector.chooseTemplate')}
         </p>
       </div>
       
@@ -54,7 +56,7 @@ const TemplateSelector: React.FC = () => {
       </div>
       
       <div className="mt-6 text-sm text-[#380e5b]">
-        <p>All templates are optimized for LinkedIn sharing with the perfect dimensions and professional design.</p>
+        <p>{t('templateSelector.optimizedTemplates')}</p>
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
 import React, { useState, useRef, ChangeEvent } from 'react';
 import { Upload, X, Check } from 'lucide-react';
 import { useEventContext } from '../context/EventContext';
+import { useTranslation } from 'react-i18next';
 
 const PhotoUpload: React.FC = () => {
+  const { t } = useTranslation();
   const { userPhoto, setUserPhoto } = useEventContext();
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
@@ -38,7 +40,7 @@ const PhotoUpload: React.FC = () => {
     
     // Check file type
     if (!file.type.match('image.*')) {
-      alert('Please upload an image file');
+      alert(t('photoUpload.error'));
       return;
     }
     
@@ -99,18 +101,18 @@ const PhotoUpload: React.FC = () => {
           <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
           
           <h3 className="text-lg font-medium text-gray-700 mb-2">
-            Upload your photo
+            {t('photoUpload.title')}
           </h3>
           
-          <p className="text-sm text-gray-500 mb-4">
-            Drag and drop your image here, or click to browse
+          <p className="text-sm text-gray-500 mb-4" data-component-name="PhotoUpload">
+            {t('photoUpload.dragDrop')}
           </p>
 
-          <p className="text-xs text-gray-400 mb-2">
-            Recommended: Square image 500x500px or larger
+          <p className="text-xs text-gray-400 mb-2" data-component-name="PhotoUpload">
+            {t('photoUpload.recommended')}
           </p>
-          <p className="text-xs text-gray-400 mb-4">
-            Supports: JPG, PNG (Max 5MB)
+          <p className="text-xs text-gray-400 mb-4" data-component-name="PhotoUpload">
+            {t('photoUpload.supports')}
           </p>
           
           {isUploading && (
@@ -122,7 +124,7 @@ const PhotoUpload: React.FC = () => {
                 ></div>
               </div>
               <p className="text-sm text-gray-500 mt-2">
-                Uploading... {uploadProgress}%
+                {t('photoUpload.uploading')} {uploadProgress}%
               </p>
             </div>
           )}
@@ -147,22 +149,22 @@ const PhotoUpload: React.FC = () => {
           
           <div className="mt-4 flex items-center justify-center bg-green-50 text-green-700 p-2 rounded">
             <Check size={20} className="mr-2" />
-            <span>Photo uploaded successfully</span>
+            <span>{t('photoUpload.success')}</span>
           </div>
           
           <p className="text-sm text-gray-500 mt-2 text-center">
-            You can click on the image to replace it if needed
+            {t('photoUpload.replace')}
           </p>
         </div>
       )}
       
       <div className="mt-6 text-center">
-        <h3 className="font-medium text-[#380e5b] mb-2">Photo guidelines:</h3>
+        <h3 className="font-medium text-[#380e5b] mb-2">{t('photoUpload.guidelines.title')}</h3>
         <ul className="text-sm text-gray-600 space-y-1">
-          <li>• Use a square image (500x500px or larger)</li>
-          <li>• Use a professional headshot or clear profile picture</li>
-          <li>• Ensure good lighting and a neutral background</li>
-          <li>• Your face should be clearly visible</li>
+          <li>• {t('photoUpload.guidelines.square')}</li>
+          <li>• {t('photoUpload.guidelines.professional')}</li>
+          <li>• {t('photoUpload.guidelines.lighting')}</li>
+          <li>• {t('photoUpload.guidelines.visible')}</li>
         </ul>
       </div>
     </div>

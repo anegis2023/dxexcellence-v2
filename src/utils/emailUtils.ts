@@ -1,5 +1,6 @@
 import emailjs from '@emailjs/browser';
 import { EMAIL_CONFIG } from './config';
+import i18next from 'i18next';
 
 // Initialize EmailJS with your public key
 export const initEmailJS = () => {
@@ -91,7 +92,8 @@ const compressImageForEmail = (canvas: HTMLCanvasElement, maxSizeKB: number = 50
 export const sendGraphicByEmail = async (
   email: string, 
   canvas: HTMLCanvasElement, 
-  userName: string
+  userName: string,
+  language?: string
 ) => {
   try {
     console.log('Preparing to send email to:', email);
@@ -107,7 +109,19 @@ export const sendGraphicByEmail = async (
       throw new Error('EmailJS service ID is not configured');
     }
     
-    if (!EMAIL_CONFIG.TEMPLATE_ID || EMAIL_CONFIG.TEMPLATE_ID === 'YOUR_TEMPLATE_ID') {
+    // Get the current language if not provided
+    const currentLanguage = language || i18next.language || 'en';
+    
+    // Determine which template ID to use based on language
+    let templateId = EMAIL_CONFIG.TEMPLATE_ID;
+    if (currentLanguage === 'pl' && EMAIL_CONFIG.TEMPLATE_ID_PL) {
+      templateId = EMAIL_CONFIG.TEMPLATE_ID_PL;
+      console.log('Using Polish email template:', templateId);
+    } else {
+      console.log('Using default email template:', templateId);
+    }
+    
+    if (!templateId || templateId === 'YOUR_TEMPLATE_ID') {
       throw new Error('EmailJS template ID is not configured');
     }
     
@@ -131,7 +145,7 @@ export const sendGraphicByEmail = async (
     // Send email with the base64 image data
     const response = await emailjs.send(
       EMAIL_CONFIG.SERVICE_ID,
-      EMAIL_CONFIG.TEMPLATE_ID,
+      templateId,
       templateParams
     );
     

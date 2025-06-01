@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useEventContext } from '../context/EventContext';
+import { useTranslation } from 'react-i18next';
 
 const UserForm: React.FC = () => {
+  const { t } = useTranslation();
   const { userName, setUserName, userEmail, setUserEmail } = useEventContext();
   const [nameError, setNameError] = useState<string>('');
   const [emailError, setEmailError] = useState<string>('');
-  
+
   useEffect(() => {
     // Parse URL parameters on mount
     const urlParams = new URLSearchParams(window.location.search);
@@ -17,7 +19,7 @@ const UserForm: React.FC = () => {
   
   const validateName = (name: string) => {
     if (!name.trim()) {
-      setNameError('Name is required');
+      setNameError(t('userForm.errors.nameRequired'));
       return false;
     }
     setNameError('');
@@ -27,11 +29,11 @@ const UserForm: React.FC = () => {
   const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email.trim()) {
-      setEmailError('Email is required');
+      setEmailError(t('userForm.errors.emailRequired'));
       return false;
     }
     if (!emailRegex.test(email)) {
-      setEmailError('Please enter a valid email');
+      setEmailError(t('userForm.errors.emailInvalid'));
       return false;
     }
     setEmailError('');
@@ -72,8 +74,9 @@ const UserForm: React.FC = () => {
         <label 
           htmlFor="name" 
           className="block text-sm font-medium text-gray-700 mb-1"
+          data-component-name="UserForm"
         >
-          Full Name
+          {t('userForm.labels.name')}
         </label>
         <input
           type="text"
@@ -81,7 +84,7 @@ const UserForm: React.FC = () => {
           value={userName}
           onChange={handleNameChange}
           onBlur={() => handleBlur('name')}
-          placeholder="John Doe"
+          placeholder={t('userForm.placeholders.name')}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-offset-2 transition-colors ${
             nameError 
               ? 'border-red-300 focus:ring-red-200 focus:border-red-400' 
@@ -92,7 +95,7 @@ const UserForm: React.FC = () => {
           <p className="mt-1 text-sm text-red-500">{nameError}</p>
         )}
         <p className="mt-1 text-xs text-gray-500">
-          This name will appear on your LinkedIn event graphic
+          {t('userForm.helpText.name')}
         </p>
       </div>
       
@@ -101,7 +104,7 @@ const UserForm: React.FC = () => {
           htmlFor="email" 
           className="block text-sm font-medium text-gray-700 mb-1"
         >
-          Email Address
+          {t('userForm.labels.email')}
         </label>
         <input
           type="email"
@@ -109,7 +112,7 @@ const UserForm: React.FC = () => {
           value={userEmail}
           onChange={handleEmailChange}
           onBlur={() => handleBlur('email')}
-          placeholder="johndoe@example.com"
+          placeholder={t('userForm.placeholders.email')}
           className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-offset-2 transition-colors ${
             emailError 
               ? 'border-red-300 focus:ring-red-200 focus:border-red-400' 
@@ -120,15 +123,14 @@ const UserForm: React.FC = () => {
           <p className="mt-1 text-sm text-red-500">{emailError}</p>
         )}
         <p className="mt-1 text-xs text-gray-500">
-          Your email is used to link your graphic to your event registration
+          {t('userForm.helpText.email')}
         </p>
       </div>
       
       <div className="p-4 rounded-lg border" style={{ background: '#dde2fc', borderColor: '#c5cef5' }}>
-        <h4 className="text-sm font-medium text-[#380e5b] mb-2">About conference Steps to Digital Transformation Excellence</h4>
+        <h4 className="text-sm font-medium text-[#380e5b] mb-2">{t('userForm.conferenceInfo.title')}</h4>
         <p className="text-xs text-[#380e5b]">
-          By creating this graphic, you're confirming that you participate in conference Steps to Digital Transformation Excellence. Your personalized graphic will help you 
-          announce your attendance to your professional network.
+          {t('userForm.conferenceInfo.description')}
         </p>
       </div>
     </div>

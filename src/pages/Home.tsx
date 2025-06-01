@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Camera, Image, Download, Users } from 'lucide-react';
 import animatedBg from '../assets/images/animated-bg.avif';
+import { useTranslation } from 'react-i18next';
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <div className="animate-fade-in">
       {/* Hero Section */}
@@ -27,17 +29,18 @@ const Home: React.FC = () => {
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#72edff]">
-              Create Your DX EXCELLENCE conference graphics
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#72edff]" data-component-name="Home">
+              {t('home.title')}
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#72edff]">
-              Stand out on LinkedIn with eye-catching DX EXCELLENCE conference graphics in seconds!
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#72edff]" data-component-name="Home">
+              {t('home.subtitle')}
             </p>
             <Link
               to="/generator"
               className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
+              data-component-name="LinkWithRef"
             >
-              Click to create Your LinkedIn graphics
+              {t('home.createButton')}
             </Link>
           </div>
         </div>
@@ -46,48 +49,48 @@ const Home: React.FC = () => {
       {/* Features Section */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-            How it works?
+          <h2 className="text-3xl font-bold text-center mb-12 text-gray-800" data-component-name="Home">
+            {t('home.howItWorks')}
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card" data-component-name="Home">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4" data-component-name="Home">
                 <Camera size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Upload Your photo</h3>
-              <p className="text-gray-600">
-                Upload your professional headshot or profile picture
+              <h3 className="text-xl font-semibold mb-2" data-component-name="Home">{t('home.features.uploadPhoto.title')}</h3>
+              <p className="text-gray-600" data-component-name="Home">
+                {t('home.features.uploadPhoto.description')}
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card" data-component-name="Home">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4" data-component-name="Home">
                 <Users size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Enter Your details</h3>
-              <p className="text-gray-600">
-                Provide your name and email to personalize your graphics
+              <h3 className="text-xl font-semibold mb-2" data-component-name="Home">{t('home.features.enterDetails.title')}</h3>
+              <p className="text-gray-600" data-component-name="Home">
+                {t('home.features.enterDetails.description')}
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card" data-component-name="Home">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4" data-component-name="Home">
                 <Image size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Choose a template</h3>
-              <p className="text-gray-600">
-                Select from our professionally designed templates
+              <h3 className="text-xl font-semibold mb-2" data-component-name="Home">{t('home.features.chooseTemplate.title')}</h3>
+              <p className="text-gray-600" data-component-name="Home">
+                {t('home.features.chooseTemplate.description')}
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-sm text-center template-card" data-component-name="Home">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-[#0F172A] mb-4" data-component-name="Home">
                 <Download size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-2">Download</h3>
-              <p className="text-gray-600">
-                Get your personalized graphics ready to share
+              <h3 className="text-xl font-semibold mb-2" data-component-name="Home">{t('home.features.download.title')}</h3>
+              <p className="text-gray-600" data-component-name="Home">
+                {t('home.features.download.description')}
               </p>
             </div>
           </div>
@@ -96,18 +99,19 @@ const Home: React.FC = () => {
 
       {/* CTA Section */}
       <section className="py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4 text-[#380e5b]">
-            Ready to Stand Out at DX EXCELLENCE conference?
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-component-name="Home">
+          <h2 className="text-3xl font-bold mb-4 text-[#380e5b]" data-component-name="Home">
+            {t('home.cta.title')}
           </h2>
-          <p className="text-xl mb-8 text-[#380e5b] max-w-3xl mx-auto">
-            Create your custom conference graphics now and show your network you're participating in this exclusive professional event.
+          <p className="text-xl mb-8 text-[#380e5b] max-w-3xl mx-auto" data-component-name="Home">
+            {t('home.cta.description')}
           </p>
           <Link
             to="/generator"
             className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
+            data-component-name="LinkWithRef"
           >
-            Click to start creating
+            {t('home.cta.button')}
           </Link>
         </div>
       </section>

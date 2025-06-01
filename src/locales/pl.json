@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Strona główna",
+    "createGraphics": "Stwórz grafikę"
+  },
+  "home": {
+    "title": "Stwórz grafiki na konferencję DX EXCELLENCE",
+    "subtitle": "Wyróżnij się na LinkedIn dzięki przyciągającym wzrok grafikom konferencyjnym DX EXCELLENCE w kilka sekund!",
+    "createButton": "Kliknij, aby stworzyć grafiki na LinkedIn",
+    "howItWorks": "Jak to działa?",
+    "cta": {
+      "title": "Gotowy, aby wyróżnić się na konferencji DX EXCELLENCE?",
+      "description": "Stwórz swoje spersonalizowane grafiki konferencyjne już teraz i pokaż swojej sieci, że uczestniczysz w tym wyjątkowym wydarzeniu zawodowym.",
+      "button": "Kliknij, aby rozpocząć tworzenie"
+    },
+    "features": {
+      "uploadPhoto": {
+        "title": "Prześlij swoje zdjęcie",
+        "description": "Prześlij swoje profesjonalne zdjęcie portretowe lub profilowe"
+      },
+      "enterDetails": {
+        "title": "Wprowadź swoje dane",
+        "description": "Podaj swoje imię i adres e-mail, aby spersonalizować grafiki"
+      },
+      "chooseTemplate": {
+        "title": "Wybierz szablon",
+        "description": "Wybierz spośród naszych profesjonalnie zaprojektowanych szablonów"
+      },
+      "download": {
+        "title": "Pobierz",
+        "description": "Otrzymaj spersonalizowane grafiki gotowe do udostępnienia"
+      }
+    }
+  },
+  "photoUpload": {
+    "title": "Prześlij swoje zdjęcie",
+    "dragDrop": "Przeciągnij i upuść swoje zdjęcie tutaj lub kliknij, aby przeglądać",
+    "recommended": "Zalecane: Kwadratowe zdjęcie 500x500px lub większe",
+    "supports": "Obsługiwane formaty: JPG, PNG (maks. 5MB)",
+    "uploading": "Przesyłanie...",
+    "success": "Zdjęcie zostało pomyślnie przesłane",
+    "replace": "Możesz kliknąć na zdjęcie, aby je zastąpić, jeśli potrzebujesz",
+    "guidelines": {
+      "title": "Wytyczne dotyczące zdjęcia:",
+      "square": "Użyj kwadratowego zdjęcia (500x500px lub większego)",
+      "professional": "Użyj profesjonalnego zdjęcia portretowego lub wyraźnego zdjęcia profilowego",
+      "lighting": "Zapewnij dobre oświetlenie i neutralne tło",
+      "visible": "Twoja twarz powinna być wyraźnie widoczna"
+    },
+    "error": "Proszę przesłać plik graficzny"
+  },
+  "userForm": {
+    "labels": {
+      "name": "Imię i nazwisko",
+      "email": "Adres e-mail"
+    },
+    "placeholders": {
+      "name": "Jan Kowalski",
+      "email": "jan.kowalski@example.com"
+    },
+    "helpText": {
+      "name": "To imię i nazwisko pojawi się na Twojej grafice wydarzenia na LinkedIn",
+      "email": "Twój adres e-mail jest używany do połączenia Twojej grafiki z rejestracją na wydarzenie"
+    },
+    "errors": {
+      "nameRequired": "Imię i nazwisko jest wymagane",
+      "emailRequired": "Adres e-mail jest wymagany",
+      "emailInvalid": "Proszę podać prawidłowy adres e-mail"
+    },
+    "conferenceInfo": {
+      "title": "O konferencji Steps to Digital Transformation Excellence",
+      "description": "Tworząc tę grafikę, potwierdzasz, że uczestniczysz w konferencji Steps to Digital Transformation Excellence. Twoja spersonalizowana grafika pomoże Ci ogłosić swoje uczestnictwo w sieci zawodowej."
+    }
+  },
+  "templateSelector": {
+    "chooseTemplate": "Wybierz jeden z naszych profesjonalnie zaprojektowanych szablonów.",
+    "optimizedTemplates": "Wszystkie szablony są zoptymalizowane do udostępniania na LinkedIn z idealnymi wymiarami i profesjonalnym designem."
+  },
+  "generator": {
+    "title": "Generator grafik",
+    "steps": {
+      "step1": "Prześlij zdjęcie",
+      "step1_title": "Prześlij swoje zdjęcie",
+      "step2": "Wprowadź dane",
+      "step2_title": "Wprowadź swoje dane",
+      "step3": "Wybierz szablon",
+      "step3_title": "Wybierz szablon",
+      "step4": "Generuj i pobierz",
+      "step4_title": "Generuj i pobierz"
+    },
+    "buttons": {
+      "download": "Pobierz grafikę",
+      "downloadSend": "Pobierz i wyślij grafikę",
+      "downloadGif": "Pobierz animowany GIF",
+      "back": "Wstecz",
+      "next": "Dalej"
+    },
+    "labels": {
+      "name": "Imię i Nazwisko",
+      "email": "Email",
+      "sending": "Wysyłanie email...",
+      "generating": "Generowanie...",
+      "creatingGif": "Tworzenie GIF...",
+      "gifPreview": "Podgląd animowanego GIF",
+      "emailSuccess": "Grafika została wysłana na Twój email!",
+      "selectTemplate": "Wybierz szablon",
+      "uploadPhoto": "Prześlij swoje zdjęcie",
+      "enterDetails": "Wprowadź swoje dane",
+      "generateDownload": "Generuj i pobierz",
+      "yourInfo": "Twoje dane"
+    },
+    "placeholders": {
+      "name": "Wprowadź swoje imię",
+      "email": "Wprowadź swój adres email"
+    }
+  }
+}

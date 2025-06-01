@@ -1,0 +1,117 @@
+{
+  "navigation": {
+    "home": "Home",
+    "createGraphics": "Create graphics"
+  },
+  "home": {
+    "title": "Create Your DX EXCELLENCE conference graphics",
+    "subtitle": "Stand out on LinkedIn with eye-catching DX EXCELLENCE conference graphics in seconds!",
+    "createButton": "Click to create Your LinkedIn graphics",
+    "howItWorks": "How it works?",
+    "cta": {
+      "title": "Ready to Stand Out at DX EXCELLENCE conference?",
+      "description": "Create your custom conference graphics now and show your network you're participating in this exclusive professional event.",
+      "button": "Click to start creating"
+    },
+    "features": {
+      "uploadPhoto": {
+        "title": "Upload Your photo",
+        "description": "Upload your professional headshot or profile picture"
+      },
+      "enterDetails": {
+        "title": "Enter Your details",
+        "description": "Provide your name and email to personalize your graphics"
+      },
+      "chooseTemplate": {
+        "title": "Choose a template",
+        "description": "Select from our professionally designed templates"
+      },
+      "download": {
+        "title": "Download",
+        "description": "Get your personalized graphics ready to share"
+      }
+    }
+  },
+  "photoUpload": {
+    "title": "Upload your photo",
+    "dragDrop": "Drag and drop your image here, or click to browse",
+    "recommended": "Recommended: Square image 500x500px or larger",
+    "supports": "Supports: JPG, PNG (Max 5MB)",
+    "uploading": "Uploading...",
+    "success": "Photo uploaded successfully",
+    "replace": "You can click on the image to replace it if needed",
+    "guidelines": {
+      "title": "Photo guidelines:",
+      "square": "Use a square image (500x500px or larger)",
+      "professional": "Use a professional headshot or clear profile picture",
+      "lighting": "Ensure good lighting and a neutral background",
+      "visible": "Your face should be clearly visible"
+    },
+    "error": "Please upload an image file"
+  },
+  "userForm": {
+    "labels": {
+      "name": "Full Name",
+      "email": "Email Address"
+    },
+    "placeholders": {
+      "name": "John Doe",
+      "email": "johndoe@example.com"
+    },
+    "helpText": {
+      "name": "This name will appear on your LinkedIn event graphic",
+      "email": "Your email is used to link your graphic to your event registration"
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email"
+    },
+    "conferenceInfo": {
+      "title": "About conference Steps to Digital Transformation Excellence",
+      "description": "By creating this graphic, you're confirming that you participate in conference Steps to Digital Transformation Excellence. Your personalized graphic will help you announce your attendance to your professional network."
+    }
+  },
+  "templateSelector": {
+    "chooseTemplate": "Choose from our professionally designed templates.",
+    "optimizedTemplates": "All templates are optimized for LinkedIn sharing with the perfect dimensions and professional design."
+  },
+  "generator": {
+    "title": "Graphics generator",
+    "steps": {
+      "step1": "Upload photo",
+      "step1_title": "Upload your photo",
+      "step2": "Enter details",
+      "step2_title": "Enter your details",
+      "step3": "Select template",
+      "step3_title": "Select a template",
+      "step4": "Generate & download",
+      "step4_title": "Generate & download"
+    },
+    "buttons": {
+      "download": "Download Graphic",
+      "downloadSend": "Download & Send graphic",
+      "downloadGif": "Download Animated GIF",
+      "back": "Back",
+      "next": "Next"
+    },
+    "labels": {
+      "selectTemplate": "Select a template",
+      "uploadPhoto": "Upload your photo",
+      "enterDetails": "Enter your details",
+      "generateDownload": "Generate & Download",
+      "yourInfo": "Your Information",
+      "name": "Name",
+      "email": "Email",
+      "sending": "Sending Email...",
+      "generating": "Generating...",
+      "creatingGif": "Creating GIF...",
+      "gifPreview": "Animated GIF Preview",
+      "emailSuccess": "Graphic sent successfully to your email!"
+    },
+    "placeholders": {
+      "name": "Enter your name",
+      "email": "Enter your email address"
+    }
+  }
+}
