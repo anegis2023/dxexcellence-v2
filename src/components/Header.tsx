@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../context/LanguageContext';
+import { Home, Image } from 'lucide-react';
 import dxLogo from '../assets/images/dx-logo-purple.png';
 
 const Header: React.FC = () => {
@@ -17,21 +18,25 @@ const Header: React.FC = () => {
           </Link>
           <div className="flex items-center">
             <nav className="mr-6">
-              <ul className="flex space-x-6">
-                <li>
+              <ul className="flex space-x-6" data-component-name="Header">
+                <li data-component-name="Header">
                   <Link 
                     to="/" 
-                    className="text-gray-600 hover:text-[#0F172A] transition-colors"
+                    className="text-gray-600 hover:text-[#0F172A] transition-colors flex items-center"
+                    title={t('navigation.home')}
+                    data-component-name="LinkWithRef"
                   >
-                    {t('navigation.home')}
+                    <Home size={24} />
                   </Link>
                 </li>
-                <li>
+                <li data-component-name="Header">
                   <Link 
                     to="/generator" 
-                    className="text-gray-600 hover:text-[#0F172A] transition-colors"
+                    className="text-gray-600 hover:text-[#0F172A] transition-colors flex items-center"
+                    title={t('navigation.createGraphics')}
+                    data-component-name="LinkWithRef"
                   >
-                    {t('navigation.createGraphics')}
+                    <Image size={24} />
                   </Link>
                 </li>
               </ul>

@@ -28,20 +28,37 @@ const Home: React.FC = () => {
         
         {/* Content */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-[#72edff]" data-component-name="Home">
-              {t('home.title')}
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-[#72edff]" data-component-name="Home">
-              {t('home.subtitle')}
-            </p>
-            <Link
-              to="/generator"
-              className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
-              data-component-name="LinkWithRef"
-            >
-              {t('home.createButton')}
-            </Link>
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="md:w-1/2 text-center md:text-left">
+              <h1 className="text-[2.25rem] md:text-[3rem] font-bold mb-8 text-[#72edff] leading-[1.44]" data-component-name="Home">
+                {t('home.title')}
+              </h1>
+              <p className="text-xl md:text-2xl mb-8 text-[#72edff] leading-[1.65]" data-component-name="Home">
+                {t('home.subtitle')}
+              </p>
+              <Link
+                to="/generator"
+                className="inline-block bg-[#72edff] text-[#380e5b] font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-[#5ad8e9] transition-colors duration-200"
+                data-component-name="LinkWithRef"
+              >
+                {t('home.createButton')}
+              </Link>
+            </div>
+            <div className="md:w-1/2 mt-8 md:mt-0 flex justify-end" data-component-name="Home">
+              <video 
+                className="w-[75%] h-auto rounded-2xl shadow-xl" 
+                autoPlay 
+                loop 
+                muted 
+                playsInline
+              >
+                <source 
+                  src="https://cdn.prod.website-files.com/67dac6ab14d03a4292155899%2F67fe073f643ba443d6a6218a_dx-excellence-original-compressed-transcode.mp4" 
+                  type="video/mp4" 
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </div>
       </section>
