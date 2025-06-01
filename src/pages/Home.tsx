@@ -30,7 +30,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="md:w-1/2 text-center md:text-left">
-              <h1 className="text-[2.25rem] md:text-[3rem] font-bold mb-8 text-[#72edff] leading-[1.44]" data-component-name="Home">
+              <h1 className="text-[2.025rem] md:text-[2.7rem] font-bold mb-8 text-[#72edff] leading-[1.22]" data-component-name="Home">
                 {t('home.title')}
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-[#72edff] leading-[1.65]" data-component-name="Home">
