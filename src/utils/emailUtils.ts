@@ -2,6 +2,13 @@ import emailjs from '@emailjs/browser';
 import { EMAIL_CONFIG } from './config';
 import i18next from 'i18next';
 
+// Function to detect if the user is on a mobile device
+const isMobileDevice = (): boolean => {
+  const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isIPadOS = navigator.maxTouchPoints > 2 && /MacIntel/.test(navigator.platform);
+  return isMobileUserAgent || isIPadOS;
+};
+
 // Initialize EmailJS with your public key
 export const initEmailJS = () => {
   try {
@@ -125,9 +132,40 @@ export const sendGraphicByEmail = async (
       throw new Error('EmailJS template ID is not configured');
     }
     
+    // Check if user is on mobile device
+    const isOnMobile = isMobileDevice();
+    
+    // For mobile devices, create a smaller canvas to avoid memory issues
+    let emailCanvas = canvas;
+    if (isOnMobile) {
+      console.log('Mobile device detected, creating smaller canvas for email...');
+      try {
+        // Create a temporary canvas at half the size
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = Math.floor(canvas.width / 2); // Half size (540px from 1080px)
+        tempCanvas.height = Math.floor(canvas.height / 2);
+        
+        const ctx = tempCanvas.getContext('2d');
+        if (!ctx) {
+          throw new Error('Could not get canvas context for resizing');
+        }
+        
+        // Draw the original canvas onto the smaller one
+        ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 
+                     0, 0, tempCanvas.width, tempCanvas.height);
+        
+        emailCanvas = tempCanvas;
+        console.log('Created smaller canvas for email:', tempCanvas.width, 'x', tempCanvas.height);
+      } catch (err) {
+        console.error('Error creating smaller canvas for mobile:', err);
+        // Fall back to original canvas if there's an error
+        emailCanvas = canvas;
+      }
+    }
+    
     // Compress the image to ensure it's under 500KB for EmailJS
     console.log('Compressing image for email attachment...');
-    const compressedDataUrl = compressImageForEmail(canvas, 480); // Slightly under 500KB to be safe
+    const compressedDataUrl = compressImageForEmail(emailCanvas, 480); // Slightly under 500KB to be safe
     
     // Remove the data:image/jpeg;base64, prefix
     const base64Image = compressedDataUrl.split(',')[1];

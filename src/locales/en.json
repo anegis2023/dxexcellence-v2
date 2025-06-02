@@ -107,7 +107,8 @@
       "generating": "Generating...",
       "creatingGif": "Creating GIF...",
       "gifPreview": "Animated GIF Preview",
-      "emailSuccess": "Graphic sent successfully to your email!"
+      "emailSuccess": "Graphic sent successfully to your email!",
+      "mobileEmailError": "Email sending may be limited on some mobile devices. Your image has been saved to your device."
     },
     "placeholders": {
       "name": "Enter your name",
