@@ -46,7 +46,7 @@ function App() {
     <BrowserRouter>
       <LanguageProvider>
         <EventProvider>
-          <div className="flex flex-col min-h-screen" style={{ background: 'linear-gradient(to right, rgb(160, 242, 254), rgb(246, 246, 219))' }}>
+          <div className="flex flex-col min-h-screen font-sans" style={{ background: 'linear-gradient(to right, rgb(160, 242, 254), rgb(246, 246, 219))' }}>
             <Header />
             <main className="flex-grow">
               <Routes>
