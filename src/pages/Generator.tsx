@@ -179,14 +179,6 @@ const Generator: React.FC = () => {
           setEmailError('Email service is not properly configured. Please check the console for details.');
         } else if (errorMessage.includes('context')) {
           setEmailError('Error processing image. Please try a different browser or device.');
-        } else if (errorMessage.includes('Load failed')) {
-          // Special handling for mobile devices with "Load failed" error
-          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-          if (isMobile) {
-            setEmailError(t('generator.labels.mobileEmailError'));
-          } else {
-            setEmailError(`Failed to send email: ${errorMessage}`);
-          }
         } else {
           setEmailError(`Failed to send email: ${errorMessage}`);
         }
