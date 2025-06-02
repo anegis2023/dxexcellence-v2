@@ -113,5 +113,9 @@
       "name": "Enter your name",
       "email": "Enter your email address"
     }
+  },
+  "footer": {
+    "tagline": "Create your personalized graphics for the DX EXCELLENCE conference",
+    "copyright": "© {year} DX EXCELLENCE Graphics Generator"
   }
 }

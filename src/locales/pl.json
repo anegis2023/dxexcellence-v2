@@ -113,5 +113,9 @@
       "name": "Wprowadź swoje imię",
       "email": "Wprowadź swój adres email"
     }
+  },
+  "footer": {
+    "tagline": "Stwórz spersonalizowane grafiki na konferencję DX EXCELLENCE",
+    "copyright": "© {year} Generator Grafik DX EXCELLENCE"
   }
 }

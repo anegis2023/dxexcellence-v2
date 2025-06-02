@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import dxLogo from '../assets/images/dxecellence-light.png';
 import animatedBg from '../assets/images/animated-bg.avif';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   return (
     <footer className="relative text-white py-8 overflow-hidden">
       {/* Animated Background */}
@@ -26,8 +28,8 @@ const Footer: React.FC = () => {
             <img src={dxLogo} alt="DX EXCELLENTS" className="h-10" />
           </div>
           <div className="text-sm">
-            <p className="text-[#72edff]">Create your personalized graphics for the DX EXCELLENCE conference</p>
-            <p className="mt-1 text-[#72edff]">© {new Date().getFullYear()} DX EXCELLENCE Graphics Generator</p>
+            <p className="text-[#72edff]" data-component-name="Footer">{t('footer.tagline')}</p>
+            <p className="mt-1 text-[#72edff]" data-component-name="Footer">{t('footer.copyright', { year: new Date().getFullYear() })}</p>
           </div>
         </div>
       </div>
