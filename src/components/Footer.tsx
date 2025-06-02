@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
           </div>
           <div className="text-sm">
             <p className="text-[#72edff]" data-component-name="Footer">{t('footer.tagline')}</p>
-            <p className="mt-1 text-[#72edff]" data-component-name="Footer">{t('footer.copyright', { year: new Date().getFullYear() })}</p>
+            <p className="mt-1 text-[#72edff]" data-component-name="Footer">{t('footer.copyright')}</p>
           </div>
         </div>
       </div>
